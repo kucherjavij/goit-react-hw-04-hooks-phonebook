@@ -3,18 +3,14 @@ import Form from "./components/form";
 import { nanoid } from 'nanoid'
 import ContactList from "./components/contactalist";
 import Filter from "./components/filter";
+import useLocalStorage from "./useLocalStorage";
+
+
+
 
 function App () {
-  const [contacts, setContacts] = useState(()=>
-  {return JSON.parse(localStorage.getItem('contacts'))}) ?? [];
+  const [contacts, setContacts] = useLocalStorage('contacts', [])
   const [filter, setFilter] = useState('');
- 
-  
-
-useEffect(() => {
-  localStorage.setItem('contacts', JSON.stringify(contacts));
-}, [contacts]);
-
   
 
 const formSubmitHandler = (data) => {
